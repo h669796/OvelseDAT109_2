@@ -39,12 +39,6 @@ public class BilUtleieSelskap {
         return ledigeBiler;
     }
 
-    public List<Bil> finnLedigBil(LocalDateTime start, LocalDateTime slutt, char kategori) {
-
-        //Ikkje ferdig
-        return null;
-    }
-
     public Reservasjon leggTilReservasjon(Kunde kunde, LocalDateTime start, LocalDateTime slutt, UtleieGruppe kategori
             , UtleieKontor utleieSted, UtleieKontor returSted) {
         List<Bil> ledigeBiler = finnLedigBil(start, slutt, kategori.getCode());
@@ -92,10 +86,10 @@ public class BilUtleieSelskap {
         return kontrakt;
     }
 
-    public void returAvBil(UtleieKontrakt kontrakt, int returKm, LocalDateTime returDato) {
+    public void returAvBil(UtleieKontrakt kontrakt, int kmKjort, LocalDateTime returDato) {
         Bil bil = kontrakt.getReservasjon().getBil();
 
-        int totalKmKjort = kontrakt.getHentetKm() + returKm;
+        int totalKmKjort = kontrakt.getHentetKm() + kmKjort;
         bil.setAntallKmKjort(totalKmKjort);
     }
 
