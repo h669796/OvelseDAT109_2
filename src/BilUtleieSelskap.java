@@ -124,7 +124,12 @@ public class BilUtleieSelskap {
             return null;
         }
 
-        System.out.println("Oppretter BetalingsKort med Kunde ID: " + kunde.getKundeID()); // Debugging-utskrift
+        if (kunde == null) {
+            System.out.println("Kundeobjektet er null i opprettUtleieKontrakt.");
+            return null;
+        }
+        System.out.println("Oppretter BetalingsKort med Kunde ID: " + kunde.getKundeID());
+
         BetalingsKort kort = new BetalingsKort(kunde.getKundeID(), kortnummer, utlopsDato, adresse);
 
         UtleieKontrakt kontrakt = new UtleieKontrakt(reservasjon.getUtleieStart(),
@@ -146,6 +151,7 @@ public class BilUtleieSelskap {
      * @param returDato
      */
     public void returAvBil(UtleieKontrakt kontrakt, int kmKjort, LocalDateTime returDato) {
+
         Bil bil = kontrakt.getReservasjon().getBil();
 
         int totalKmKjort = kontrakt.getHentetKm() + kmKjort;

@@ -1,4 +1,5 @@
 import javax.swing.text.DateFormatter;
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -83,7 +84,14 @@ public class Main {
 
         //Kunden har brukt bilen i et døgn, og vil nå levere den tilbake
 
-        selskap.returAvBil(kunde1kontrakt, 50, slutt);
+
+        if (kunde1kontrakt != null) {
+            selskap.returAvBil(kunde1kontrakt, 50, slutt);
+        } else {
+            System.out.println("Ingen gyldig utleiekontrakt funnet.");
+        }
+
+
 
         //Kunden må nå betale for leien
 

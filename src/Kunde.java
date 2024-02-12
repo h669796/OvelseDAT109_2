@@ -32,7 +32,6 @@ public class Kunde {
     public int getKundeID(){
             return kundeID;
 
-
     }
     public String getFornavn() {
         return fornavn;
