@@ -19,18 +19,19 @@ public class BilUtleieSelskap {
         this.adresse = address;
     }
 
-    public void addUtleieKontor(UtleieKontor kontor){
+    public void addUtleieKontor(UtleieKontor kontor) {
         utleieKontor.add(kontor);
     }
-    public void vilUtleieKontor(){
-        for(UtleieKontor kontor : utleieKontor){
+
+    public void vilUtleieKontor() {
+        for (UtleieKontor kontor : utleieKontor) {
             System.out.println(kontor.toString());
         }
     }
 
-    public List<Bil> finnLedigBil(LocalDateTime start, LocalDateTime slutt, String kategori){
+    public List<Bil> finnLedigBil(LocalDateTime start, LocalDateTime slutt, String kategori) {
         List<Bil> ledigeBiler = new ArrayList<>();
-        for(UtleieKontor kontor : utleieKontor){
+        for (UtleieKontor kontor : utleieKontor) {
             ledigeBiler.addAll(kontor.visLedigeBiler().stream()
                     .filter(bil -> bil.getUtleieGruppe().getCode().equals(kategori) && bil.getStatus())
                     .toList());
@@ -45,9 +46,9 @@ public class BilUtleieSelskap {
     }
 
     public Reservasjon leggTilReservasjon(Kunde kunde, LocalDateTime start, LocalDateTime slutt, UtleieGruppe kategori
-            , UtleieKontor utleieSted, UtleieKontor returSted){
+            , UtleieKontor utleieSted, UtleieKontor returSted) {
         List<Bil> ledigeBiler = finnLedigBil(start, slutt, kategori.getCode());
-        if(!ledigeBiler.isEmpty()){
+        if (!ledigeBiler.isEmpty()) {
             Bil valgtBil = ledigeBiler.get(0);
             int pris = beregnPris(start, slutt, kategori, utleieSted, returSted);
             Reservasjon nyRes = new Reservasjon(utleieSted.getAdresse().getPoststed(), returSted.getAdresse().getPoststed(), start, slutt, kategori.getCode(), pris, valgtBil);
@@ -59,12 +60,12 @@ public class BilUtleieSelskap {
         }
     }
 
-    public int beregnPris(LocalDateTime start, LocalDateTime slutt, UtleieGruppe kategori, UtleieKontor utleieSted, UtleieKontor returSted){
+    public int beregnPris(LocalDateTime start, LocalDateTime slutt, UtleieGruppe kategori, UtleieKontor utleieSted, UtleieKontor returSted) {
         int grunnPris = kategori.getGrunnPris();
         long rentalDays = ChronoUnit.DAYS.between(start, slutt);
         int totalPris = (int) rentalDays * grunnPris;
 
-        if(!utleieSted.equals(returSted)){
+        if (!utleieSted.equals(returSted)) {
             int ekstraKostnad = 500;
             totalPris += ekstraKostnad;
         }
@@ -72,7 +73,7 @@ public class BilUtleieSelskap {
     }
 
     public UtleieKontrakt opprettUtleieKontrakt(Reservasjon reservasjon, Kunde kunde, Bil bil, LocalDateTime henteDato, LocalDateTime returDato, int hentetKm, String kortnummer, LocalDate utlopsDato, Adresse adresse) {
-        if(!bil.getStatus() || !reservasjon.getBil().getRegnr().equals(bil.getRegnr())){
+        if (!bil.getStatus() || !reservasjon.getBil().getRegnr().equals(bil.getRegnr())) {
             System.out.println("Bilen er ikke tilgjengelig for utleie");
             return null;
         }
@@ -91,7 +92,7 @@ public class BilUtleieSelskap {
         return kontrakt;
     }
 
-    public void returAvBil(UtleieKontrakt kontrakt, int returKm, LocalDateTime returDato){
+    public void returAvBil(UtleieKontrakt kontrakt, int returKm, LocalDateTime returDato) {
         Bil bil = kontrakt.getReservasjon().getBil();
 
         int totalKmKjort = kontrakt.getHentetKm() + returKm;
@@ -108,11 +109,12 @@ public class BilUtleieSelskap {
 
             System.out.println("Betalings beløp = " + kontrakt.getReservasjon().getPris() + " NOK " + " ble prosessert for kundeID: " + kunde.getKundeID());
             return true;
-        } catch (Exception e){
+        } catch (Exception e) {
             System.err.println("Betalings prosesseringen feilet: " + e.getMessage());
             return false;
         }
     }
+
     public String getNavn() {
         return navn;
     }
@@ -144,3 +146,4 @@ public class BilUtleieSelskap {
     public void setUtleieKontor(List<UtleieKontor> utleieKontor) {
         this.utleieKontor = utleieKontor;
     }
+}
