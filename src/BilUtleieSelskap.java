@@ -118,7 +118,7 @@ public class BilUtleieSelskap {
      * @param adresse
      * @return en utleiekontrakt
      */
-    public UtleieKontrakt opprettUtleieKontrakt(Reservasjon reservasjon, Kunde kunde, Bil bil, LocalDateTime henteDato, LocalDateTime returDato, int hentetKm, String kortnummer, LocalDate utlopsDato, Adresse adresse) {
+    public UtleieKontrakt opprettUtleieKontrakt(Reservasjon reservasjon, Kunde kunde, Bil bil, LocalDateTime henteDato, LocalDateTime returDato, int hentetKm, String kortnummer, String utlopsDato, Adresse adresse) {
         if (!bil.getStatus() || !reservasjon.getBil().getRegnr().equals(bil.getRegnr())) {
             System.out.println("Bilen er ikke tilgjengelig for utleie");
             return null;
@@ -162,7 +162,7 @@ public class BilUtleieSelskap {
     public boolean betalForLeien(Kunde kunde, UtleieKontrakt kontrakt) {
         try {
             String kortnummer = kontrakt.getKort().getKortnummer();
-            LocalDate utlopsdato = kontrakt.getKort().getUtlopsdato();
+            String utlopsdato = kontrakt.getKort().getUtlopsdato();
             Adresse adresse1 = kontrakt.getKort().getFakturaAdresse();
 
             Betaling betaling = new Betaling(kunde.getKundeID(), kortnummer, utlopsdato, adresse1);

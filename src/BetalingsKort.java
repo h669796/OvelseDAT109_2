@@ -9,7 +9,7 @@ public class BetalingsKort {
 
     private int kundeID;
     private String kortnummer;
-    private LocalDate utlopsdato;
+    private String utlopsdato;
     private Adresse fakturaAdresse;
 
 /**
@@ -21,7 +21,7 @@ public class BetalingsKort {
      * @param adresse Fakturaadressen for betalingen
      */
 
-    public BetalingsKort(int kundeID, String kortnummer, LocalDate utlopsdato, Adresse adresse){
+    public BetalingsKort(int kundeID, String kortnummer, String utlopsdato, Adresse adresse){
         this.kundeID = kundeID;
         this.kortnummer = kortnummer;
         this.utlopsdato = utlopsdato;
@@ -34,7 +34,7 @@ public class BetalingsKort {
     public String getKortnummer() {
         return kortnummer;
     }
-    public LocalDate getUtlopsdato() {
+    public String getUtlopsdato() {
         return utlopsdato;
     }
     public Adresse getFakturaAdresse() {

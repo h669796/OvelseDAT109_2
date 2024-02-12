@@ -66,7 +66,7 @@ public class Main {
         LocalDateTime start = LocalDateTime.parse("2024-02-12 15:00:00", formatter);
         LocalDateTime slutt = LocalDateTime.parse("2024-02-13 16:00:00", formatter);
 
-        List<Bil> kandidater = selskap.finnLedigeBiler(start, slutt, "C");
+        List<Bil> kandidater = selskap.finnLedigBil(start, slutt, "C");
 
         //Kunden skal nå gjennomføre reservasjonen
 

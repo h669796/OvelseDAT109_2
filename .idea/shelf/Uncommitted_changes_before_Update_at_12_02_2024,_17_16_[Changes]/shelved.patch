@@ -1,0 +1,269 @@
+Index: ../øvelse2/src/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import java.util.Scanner;\n\n/**\n * * Hovedklassen for simulering av leieprosessen i et bilutleieselskap.\n   * Denne klassen initialiserer bilutleieselskapet, legger til utleiekontorer og biler,\n   * og behandler kundeinndata for å starte leieprosessen.\n    *\n    */\npublic class Main {\n    public static void main(String[] args) {\n\n        // Dette er klassen for leien foregår, simulert\n\n        BilUtleieSelskap selskap = new BilUtleieSelskap(\"Norge Bilutleie\", \"55984400\", new Adresse(\"Fritzveien 55\", \"0665\", \"Oslo Sentrum\"));\n\n        UtleieKontor oslo = new UtleieKontor(\"Oslo\", new Adresse(\"Olahaugen 12\", \"1364\", \"Fornebu\"), \"55982200\");\n        selskap.addUtleieKontor(oslo);\n\n        UtleieKontor bergen = new UtleieKontor(\"Bergen\", new Adresse(\"Fleslandsvein 55\", \"5237\", \"Ytrebygda\"), \"33984400\");\n        selskap.addUtleieKontor(bergen);\n\n        Bil bil1 = new Bil(\"BT53331\", \"BMW\", \"X3\", \"svart\", UtleieGruppe.STOR, 100);\n        Bil bil2 = new Bil(\"EL12345\", \"Tesla\", \"Model 3\", \"hvit\", UtleieGruppe.MELLOMSTOR, 50);\n        Bil bil3 = new Bil(\"SU67890\", \"Suzuki\", \"Swift\", \"rød\", UtleieGruppe.LITEN, 300);\n        Bil bil4 = new Bil(\"VO24680\", \"Volvo\", \"V60\", \"blå\", UtleieGruppe.STASJONSVOGN, 600);\n\n        oslo.addBil(bil1);\n        oslo.addBil(bil2);\n        bergen.addBil(bil3);\n        oslo.addBil(bil4);\n\n        Kunde kunde1; // gjør oss klar til å ta imot en ny kunde, enten online eller i butikken\n\n        System.out.println(\"En kunde vil starte leieprosessen.\");\n\n        System.out.println(\"Skriv inn fornavn\");\n        Scanner scanner = new Scanner(System.in);\n        String fornavn = scanner.nextLine();\n        System.out.println(\"Skriv inn etternavn\");\n        String etternavn = scanner.nextLine();\n        System.out.println(\"Skriv inn telefonnummeret ditt\");\n        String tlfnr = scanner.nextLine();\n\n        System.out.println(\"Skriv inn gateaddressen din\");\n        String gateaddresse = scanner.nextLine();\n        System.out.println(\"Skriv inn postnummeret ditt\");\n        String postnr = scanner.nextLine();\n        System.out.println(\"Skriv inn poststedet ditt\");\n        String poststed = scanner.nextLine();\n\n        Adresse kunde1_adresse = new Adresse(gateaddresse, postnr, poststed);\n\n        kunde1 = new Kunde(fornavn, etternavn, kunde1_adresse, tlfnr);\n\n    }\n\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../øvelse2/src/Main.java b/../øvelse2/src/Main.java
+--- a/../øvelse2/src/Main.java	(revision 4e1d26361a5352f66180aa4a2490a700fd84b18c)
++++ b/../øvelse2/src/Main.java	(date 1707754591280)
+@@ -1,3 +1,5 @@
++import java.time.LocalDateTime;
++import java.time.format.DateTimeFormatter;
+ import java.util.Scanner;
+ 
+ /**
+@@ -6,52 +8,49 @@
+    * og behandler kundeinndata for å starte leieprosessen.
+     *
+     */
+-public class Main {
+-    public static void main(String[] args) {
+-
+-        // Dette er klassen for leien foregår, simulert
+-
+-        BilUtleieSelskap selskap = new BilUtleieSelskap("Norge Bilutleie", "55984400", new Adresse("Fritzveien 55", "0665", "Oslo Sentrum"));
+-
+-        UtleieKontor oslo = new UtleieKontor("Oslo", new Adresse("Olahaugen 12", "1364", "Fornebu"), "55982200");
+-        selskap.addUtleieKontor(oslo);
+-
+-        UtleieKontor bergen = new UtleieKontor("Bergen", new Adresse("Fleslandsvein 55", "5237", "Ytrebygda"), "33984400");
+-        selskap.addUtleieKontor(bergen);
+-
+-        Bil bil1 = new Bil("BT53331", "BMW", "X3", "svart", UtleieGruppe.STOR, 100);
+-        Bil bil2 = new Bil("EL12345", "Tesla", "Model 3", "hvit", UtleieGruppe.MELLOMSTOR, 50);
+-        Bil bil3 = new Bil("SU67890", "Suzuki", "Swift", "rød", UtleieGruppe.LITEN, 300);
+-        Bil bil4 = new Bil("VO24680", "Volvo", "V60", "blå", UtleieGruppe.STASJONSVOGN, 600);
+-
+-        oslo.addBil(bil1);
+-        oslo.addBil(bil2);
+-        bergen.addBil(bil3);
+-        oslo.addBil(bil4);
+-
+-        Kunde kunde1; // gjør oss klar til å ta imot en ny kunde, enten online eller i butikken
+-
+-        System.out.println("En kunde vil starte leieprosessen.");
+-
+-        System.out.println("Skriv inn fornavn");
+-        Scanner scanner = new Scanner(System.in);
+-        String fornavn = scanner.nextLine();
+-        System.out.println("Skriv inn etternavn");
+-        String etternavn = scanner.nextLine();
+-        System.out.println("Skriv inn telefonnummeret ditt");
+-        String tlfnr = scanner.nextLine();
+-
+-        System.out.println("Skriv inn gateaddressen din");
+-        String gateaddresse = scanner.nextLine();
+-        System.out.println("Skriv inn postnummeret ditt");
+-        String postnr = scanner.nextLine();
+-        System.out.println("Skriv inn poststedet ditt");
+-        String poststed = scanner.nextLine();
+-
+-        Adresse kunde1_adresse = new Adresse(gateaddresse, postnr, poststed);
+-
+-        kunde1 = new Kunde(fornavn, etternavn, kunde1_adresse, tlfnr);
+-
+-    }
+-
++
++public class Main(){
++public static void main(String[] args) {
++    BilUtleieSelskap selskap = new BilUtleieSelskap("Norge Bilutleie", "55984400", new Adresse("Fritzveien 55", "0665", "Oslo Sentrum"));
++    UtleieKontor oslo = new UtleieKontor("Oslo", new Adresse("Olahaugen 12", "1364", "Fornebu"), "55982200");
++    selskap.addUtleieKontor(oslo);
++    UtleieKontor bergen = new UtleieKontor("Bergen", new Adresse("Fleslandsvein 55", "5237", "Ytrebygda"), "33984400");
++    selskap.addUtleieKontor(bergen);
++    Bil bil1 = new Bil("BT53331", "BMW", "X3", "svart", UtleieGruppe.STOR, 100);
++    Bil bil2 = new Bil("EL12345", "Tesla", "Model 3", "hvit", UtleieGruppe.MELLOMSTOR, 50);
++    Bil bil3 = new Bil("SU67890", "Suzuki", "Swift", "rød", UtleieGruppe.LITEN, 300);
++    Bil bil4 = new Bil("VO24680", "Volvo", "V60", "blå", UtleieGruppe.STASJONSVOGN, 600);
++    oslo.addBil(bil1);
++    oslo.addBil(bil2);
++    bergen.addBil(bil3);
++    oslo.addBil(bil4);
++    System.out.println("En kunde vil starte leieprosessen.");
++    System.out.println("Skriv inn fornavn");
++    Scanner scanner = new Scanner(System.in);
++    String fornavn = scanner.nextLine();
++    System.out.println("Skriv inn etternavn");
++    String etternavn = scanner.nextLine();
++    System.out.println("Skriv inn telefonnummeret ditt");
++    String tlfnr = scanner.nextLine();
++    System.out.println("Skriv inn gateaddressen din");
++    String gateaddresse = scanner.nextLine();
++    System.out.println("Skriv inn postnummeret ditt");
++    String postnr = scanner.nextLine();
++    System.out.println("Skriv inn poststedet ditt");
++    String poststed = scanner.nextLine();
++    Adresse kunde1_adresse = new Adresse(gateaddresse, postnr, poststed);
++    Kunde kunde1 = new Kunde(fornavn, etternavn, kunde1_adresse, tlfnr);
++    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
++    LocalDateTime start = LocalDateTime.parse("2024-02-12 15:00:00", formatter);
++    LocalDateTime slutt = LocalDateTime.parse("2024-02-13 16:00:00", formatter);
++    selskap.finnLedigBil(start, slutt, "C");
++    Reservasjon kunde1res = selskap.leggTilReservasjon(kunde1, start, slutt, UtleieGruppe.STOR, oslo, oslo);
++    System.out.println("Skriv inn kortnummeret ditt for å initiere kontrakten");
++    String kortnr = scanner.nextLine();
++    System.out.println("Skriv inn utlopsdatoen til kortet");
++    String utlopsdato = "2026:05:10";
++    UtleieKontrakt kunde1kontrakt = selskap.opprettUtleieKontrakt(kunde1res, kunde1res.getKundeID(), kunde1res.getBil(), start, slutt, kunde1res.getBil().getAntallKmKjort(), kortnr, utlopsdato, kunde1_adresse);
++    selskap.returAvBil(kunde1kontrakt, 50, slutt);
++    selskap.betalForLeien(kunde1, kunde1kontrakt);
++}
+ }
+\ No newline at end of file
+Index: ../øvelse2/.idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"aa0872e6-7614-4944-bbae-c21cd042ca09\" name=\"Changes\" comment=\"femte push pga main metoden mangler\" />\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Enum\" />\n        <option value=\"Class\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"ProjectColorInfo\"><![CDATA[{\n  \"associatedIndex\": 7\n}]]></component>\n  <component name=\"ProjectId\" id=\"2cGaz8BvR1sIwNAmjlmlLVRvE2N\" />\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"git-widget-placeholder\": \"main\",\n    \"kotlin-language-version-configured\": \"true\",\n    \"node.js.detected.package.eslint\": \"true\",\n    \"node.js.detected.package.tslint\": \"true\",\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\n    \"nodejs_package_manager_path\": \"npm\",\n    \"vue.rearranger.settings.migration\": \"true\"\n  }\n}]]></component>\n  <component name=\"SharedIndexes\">\n    <attachedChunks>\n      <set>\n        <option value=\"jdk-18.0.2-corretto-18.0.2-f644763e9732-da6bd485\" />\n      </set>\n    </attachedChunks>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"aa0872e6-7614-4944-bbae-c21cd042ca09\" name=\"Changes\" comment=\"\" />\n      <created>1707740630809</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1707740630809</updated>\n      <workItem from=\"1707740631921\" duration=\"6038000\" />\n    </task>\n    <task id=\"LOCAL−00001\" summary=\"andre push\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1707748849007</created>\n      <option name=\"number\" value=\"LOCAL−00001\" />\n      <option name=\"presentableId\" value=\"LOCAL−00001\" />\n      <updated>1707748849007</updated>\n    </task>\n    <task id=\"LOCAL−00002\" summary=\"andre push\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1707749764660</created>\n      <option name=\"number\" value=\"LOCAL−00002\" />\n      <option name=\"presentableId\" value=\"LOCAL−00002\" />\n      <updated>1707749764660</updated>\n    </task>\n    <task id=\"LOCAL−00003\" summary=\"fjerde push\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1707749846800</created>\n      <option name=\"number\" value=\"LOCAL−00003\" />\n      <option name=\"presentableId\" value=\"LOCAL−00003\" />\n      <updated>1707749846800</updated>\n    </task>\n    <task id=\"LOCAL−00004\" summary=\"femte push pga main metoden mangler\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1707749973631</created>\n      <option name=\"number\" value=\"LOCAL−00004\" />\n      <option name=\"presentableId\" value=\"LOCAL−00004\" />\n      <updated>1707749973631</updated>\n    </task>\n    <task id=\"LOCAL−00005\" summary=\"femte push pga main metoden mangler\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1707750211889</created>\n      <option name=\"number\" value=\"LOCAL−00005\" />\n      <option name=\"presentableId\" value=\"LOCAL−00005\" />\n      <updated>1707750211889</updated>\n    </task>\n    <task id=\"LOCAL−00006\" summary=\"femte push pga main metoden mangler\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1707750704872</created>\n      <option name=\"number\" value=\"LOCAL−00006\" />\n      <option name=\"presentableId\" value=\"LOCAL−00006\" />\n      <updated>1707750704872</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"7\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"andre push\" />\n    <MESSAGE value=\"fjerde push\" />\n    <MESSAGE value=\"femte push pga main metoden mangler\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"femte push pga main metoden mangler\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../øvelse2/.idea/workspace.xml b/../øvelse2/.idea/workspace.xml
+--- a/../øvelse2/.idea/workspace.xml	(revision 4e1d26361a5352f66180aa4a2490a700fd84b18c)
++++ b/../øvelse2/.idea/workspace.xml	(date 1707754607115)
+@@ -4,7 +4,10 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="aa0872e6-7614-4944-bbae-c21cd042ca09" name="Changes" comment="femte push pga main metoden mangler" />
++    <list default="true" id="aa0872e6-7614-4944-bbae-c21cd042ca09" name="Changes" comment="javadoc 3 klasser">
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
++    </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -21,9 +24,9 @@
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+-  <component name="ProjectColorInfo"><![CDATA[{
+-  "associatedIndex": 7
+-}]]></component>
++  <component name="ProjectColorInfo">{
++  &quot;associatedIndex&quot;: 7
++}</component>
+   <component name="ProjectId" id="2cGaz8BvR1sIwNAmjlmlLVRvE2N" />
+   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+   <component name="ProjectViewState">
+@@ -32,22 +35,43 @@
+   </component>
+   <component name="PropertiesComponent"><![CDATA[{
+   "keyToString": {
++    "Application.Main.executor": "Run",
+     "RunOnceActivity.OpenProjectViewOnStart": "true",
+     "RunOnceActivity.ShowReadmeOnStart": "true",
++    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+     "git-widget-placeholder": "main",
+     "kotlin-language-version-configured": "true",
++    "last_opened_file_path": "C:/IntelliJcode/OvelseDAT109_2",
+     "node.js.detected.package.eslint": "true",
+     "node.js.detected.package.tslint": "true",
+     "node.js.selected.package.eslint": "(autodetect)",
+     "node.js.selected.package.tslint": "(autodetect)",
+     "nodejs_package_manager_path": "npm",
++    "project.structure.last.edited": "Modules",
++    "project.structure.proportion": "0.15",
++    "project.structure.side.proportion": "0.2",
+     "vue.rearranger.settings.migration": "true"
+   }
+ }]]></component>
++  <component name="RunManager">
++    <configuration default="true" type="JetRunConfigurationType">
++      <module name="OvelseDAT109_2" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
++      <module name="OvelseDAT109_2" />
++      <option name="filePath" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++  </component>
+   <component name="SharedIndexes">
+     <attachedChunks>
+       <set>
+-        <option value="jdk-18.0.2-corretto-18.0.2-f644763e9732-da6bd485" />
++        <option value="jdk-18.0.2-corretto-18.0.2-f644763e9732-56b8144a" />
+       </set>
+     </attachedChunks>
+   </component>
+@@ -59,7 +83,8 @@
+       <option name="number" value="Default" />
+       <option name="presentableId" value="Default" />
+       <updated>1707740630809</updated>
+-      <workItem from="1707740631921" duration="6038000" />
++      <workItem from="1707740631921" duration="5689000" />
++      <workItem from="1707751044812" duration="2781000" />
+     </task>
+     <task id="LOCAL−00001" summary="andre push">
+       <option name="closed" value="true" />
+@@ -96,23 +121,57 @@
+       <option name="presentableId" value="LOCAL−00005" />
+       <updated>1707750211889</updated>
+     </task>
+-    <task id="LOCAL−00006" summary="femte push pga main metoden mangler">
++    <task id="LOCAL−00006" summary="tester pushewrn">
+       <option name="closed" value="true" />
+-      <created>1707750704872</created>
++      <created>1707751315867</created>
+       <option name="number" value="LOCAL−00006" />
+       <option name="presentableId" value="LOCAL−00006" />
+-      <updated>1707750704872</updated>
++      <updated>1707751315867</updated>
++    </task>
++    <task id="LOCAL−00007" summary="javadoc 3 klasser">
++      <option name="closed" value="true" />
++      <created>1707752214695</created>
++      <option name="number" value="LOCAL−00007" />
++      <option name="presentableId" value="LOCAL−00007" />
++      <updated>1707752214696</updated>
+     </task>
+-    <option name="localTasksCounter" value="7" />
++    <task id="LOCAL−00008" summary="javadoc 3 klasser">
++      <option name="closed" value="true" />
++      <created>1707752757075</created>
++      <option name="number" value="LOCAL−00008" />
++      <option name="presentableId" value="LOCAL−00008" />
++      <updated>1707752757075</updated>
++    </task>
++    <task id="LOCAL−00009" summary="javadoc 3 klasser">
++      <option name="closed" value="true" />
++      <created>1707753190998</created>
++      <option name="number" value="LOCAL−00009" />
++      <option name="presentableId" value="LOCAL−00009" />
++      <updated>1707753190998</updated>
++    </task>
++    <option name="localTasksCounter" value="10" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+     <option name="version" value="3" />
+   </component>
++  <component name="Vcs.Log.Tabs.Properties">
++    <option name="TAB_STATES">
++      <map>
++        <entry key="MAIN">
++          <value>
++            <State />
++          </value>
++        </entry>
++      </map>
++    </option>
++  </component>
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="andre push" />
+     <MESSAGE value="fjerde push" />
+     <MESSAGE value="femte push pga main metoden mangler" />
+-    <option name="LAST_COMMIT_MESSAGE" value="femte push pga main metoden mangler" />
++    <MESSAGE value="tester pushewrn" />
++    <MESSAGE value="javadoc 3 klasser" />
++    <option name="LAST_COMMIT_MESSAGE" value="javadoc 3 klasser" />
+   </component>
+ </project>
+\ No newline at end of file

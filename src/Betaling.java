@@ -9,7 +9,7 @@ import java.time.LocalDate;
 public class Betaling {
     private int kundeID;
     private String kortNummer;
-    private LocalDate utlopsDato;
+    private String utlopsDato;
     private Adresse fakturaAdresse;
 
     /**
@@ -21,7 +21,7 @@ public class Betaling {
      * @param fakturaAdresse Fakturaadressen for betalingen
      */
 
-    public Betaling(int kundeID, String kortNummer, LocalDate utlopsDato, Adresse fakturaAdresse) {
+    public Betaling(int kundeID, String kortNummer, String utlopsDato, Adresse fakturaAdresse) {
         this.kundeID = kundeID;
         this.kortNummer = kortNummer;
         this.utlopsDato = utlopsDato;
@@ -44,11 +44,11 @@ public class Betaling {
         this.kortNummer = kortNummer;
     }
 
-    public LocalDate getUtlopsDato() {
+    public String getUtlopsDato() {
         return utlopsDato;
     }
 
-    public void setUtlopsDato(LocalDate utlopsDato) {
+    public void setUtlopsDato(String utlopsDato) {
         this.utlopsDato = utlopsDato;
     }
 
