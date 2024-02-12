@@ -149,6 +149,7 @@ public class BilUtleieSelskap {
 
         int totalKmKjort = kontrakt.getHentetKm() + kmKjort;
         bil.setAntallKmKjort(totalKmKjort);
+        bil.setStatus(true);
     }
 
 

@@ -73,7 +73,8 @@ public class Bil {
     }
 
     public void setStatus(Boolean status) {
-        status = status;
+
+        this.status = status;
     }
     @Override
     public String toString() {

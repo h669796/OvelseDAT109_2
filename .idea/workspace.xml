@@ -4,9 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aa0872e6-7614-4944-bbae-c21cd042ca09" name="Changes" comment="javadoc 3 klasser">
+    <list default="true" id="aa0872e6-7614-4944-bbae-c21cd042ca09" name="Changes" comment="femte push pga main metoden mangler">
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_02_2024_16_27__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_02_2024_16_27__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_02_2024__17_16__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_02_2024__17_16__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OvelseDAT109_2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/OvelseDAT109_2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/BilUtleieSelskapTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BilUtleieSelskap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BilUtleieSelskap.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +34,9 @@
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="2cGaz8BvR1sIwNAmjlmlLVRvE2N" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -36,12 +44,17 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.All in OvelseDAT109_2.executor": "Run",
+    "JUnit.BilUtleieSelskapTest.executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/IntelliJcode/OvelseDAT109_2",
+    "last_opened_file_path": "C:/Users/adamy/IdeaProjects/OvelseDAT109_2",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -50,32 +63,57 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "inlay.hints",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
+  <component name="RunManager" selected="JUnit.All in OvelseDAT109_2">
+    <configuration name="All in OvelseDAT109_2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="OvelseDAT109_2" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+    <configuration name="BilUtleieSelskapTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="OvelseDAT109_2" />
-      <option name="filePath" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="BilUtleieSelskapTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="BilUtleieSelskapTest.returAvBil" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="OvelseDAT109_2" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="BilUtleieSelskapTest" />
+      <option name="METHOD_NAME" value="returAvBil" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.All in OvelseDAT109_2" />
+        <item itemvalue="JUnit.BilUtleieSelskapTest.returAvBil" />
+        <item itemvalue="JUnit.BilUtleieSelskapTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-18.0.2-corretto-18.0.2-f644763e9732-56b8144a" />
+        <option value="jdk-18.0.2-corretto-18.0.2-4caba194b151-5720f15e" />
       </set>
     </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="aa0872e6-7614-4944-bbae-c21cd042ca09" name="Changes" comment="" />
@@ -83,8 +121,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1707740630809</updated>
-      <workItem from="1707740631921" duration="5689000" />
-      <workItem from="1707751044812" duration="3282000" />
+      <workItem from="1707740631921" duration="6038000" />
     </task>
     <task id="LOCAL−00001" summary="andre push">
       <option name="closed" value="true" />
@@ -121,57 +158,24 @@
       <option name="presentableId" value="LOCAL−00005" />
       <updated>1707750211889</updated>
     </task>
-    <task id="LOCAL−00006" summary="tester pushewrn">
+    <task id="LOCAL−00006" summary="femte push pga main metoden mangler">
       <option name="closed" value="true" />
-      <created>1707751315867</created>
+      <created>1707750704872</created>
       <option name="number" value="LOCAL−00006" />
       <option name="presentableId" value="LOCAL−00006" />
-      <updated>1707751315867</updated>
+      <updated>1707750704872</updated>
     </task>
-    <task id="LOCAL−00007" summary="javadoc 3 klasser">
-      <option name="closed" value="true" />
-      <created>1707752214695</created>
-      <option name="number" value="LOCAL−00007" />
-      <option name="presentableId" value="LOCAL−00007" />
-      <updated>1707752214696</updated>
-    </task>
-    <task id="LOCAL−00008" summary="javadoc 3 klasser">
-      <option name="closed" value="true" />
-      <created>1707752757075</created>
-      <option name="number" value="LOCAL−00008" />
-      <option name="presentableId" value="LOCAL−00008" />
-      <updated>1707752757075</updated>
-    </task>
-    <task id="LOCAL−00009" summary="javadoc 3 klasser">
-      <option name="closed" value="true" />
-      <created>1707753190998</created>
-      <option name="number" value="LOCAL−00009" />
-      <option name="presentableId" value="LOCAL−00009" />
-      <updated>1707753190998</updated>
-    </task>
-    <option name="localTasksCounter" value="10" />
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="andre push" />
     <MESSAGE value="fjerde push" />
     <MESSAGE value="femte push pga main metoden mangler" />
-    <MESSAGE value="tester pushewrn" />
-    <MESSAGE value="javadoc 3 klasser" />
-    <option name="LAST_COMMIT_MESSAGE" value="javadoc 3 klasser" />
+    <MESSAGE value="fjerna unødvendige tester" />
+    <option name="LAST_COMMIT_MESSAGE" value="fjerna unødvendige tester" />
   </component>
 </project>
