@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main {
+public class Main { //test
     public static void main(String[] args) {
 
         // Dette er klassen for leien foregår, simulert
