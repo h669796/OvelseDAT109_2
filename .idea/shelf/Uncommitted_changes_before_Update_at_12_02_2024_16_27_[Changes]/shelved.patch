@@ -1,0 +1,112 @@
+Index: src/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import java.util.Scanner;\r\n\r\npublic class Main { //I love black people\r\n    public static void main(String[] args) {\r\n\r\n        // Dette er klassen for leien foregår, simulert\r\n\r\n        BilUtleieSelskap selskap = new BilUtleieSelskap(\"Norge Bilutleie\", \"55984400\", new Adresse(\"Fritzveien 55\", \"0665\", \"Oslo Sentrum\"));\r\n\r\n        UtleieKontor oslo = new UtleieKontor(\"Oslo\", new Adresse(\"Olahaugen 12\", \"1364\", \"Fornebu\"), \"55982200\");\r\n        selskap.addUtleieKontor(oslo);\r\n\r\n        UtleieKontor bergen = new UtleieKontor(\"Bergen\", new Adresse(\"Fleslandsvein 55\", \"5237\", \"Ytrebygda\"), \"33984400\");\r\n        selskap.addUtleieKontor(bergen);\r\n\r\n        Bil bil1 = new Bil(\"BT53331\", \"BMW\", \"X3\", \"svart\", UtleieGruppe.STOR, 100);\r\n        Bil bil2 = new Bil(\"EL12345\", \"Tesla\", \"Model 3\", \"hvit\", UtleieGruppe.MELLOMSTOR, 50);\r\n        Bil bil3 = new Bil(\"SU67890\", \"Suzuki\", \"Swift\", \"rød\", UtleieGruppe.LITEN, 300);\r\n        Bil bil4 = new Bil(\"VO24680\", \"Volvo\", \"V60\", \"blå\", UtleieGruppe.STASJONSVOGN, 600);\r\n\r\n        oslo.addBil(bil1);\r\n        oslo.addBil(bil2);\r\n        bergen.addBil(bil3);\r\n        oslo.addBil(bil4);\r\n\r\n        Kunde kunde1; // gjør oss klar til å ta imot en ny kunde, enten online eller i butikken\r\n\r\n        System.out.println(\"En kunde vil starte leieprosessen.\");\r\n\r\n        System.out.println(\"Skriv inn fornavn\");\r\n        Scanner scanner = new Scanner(System.in);\r\n        String fornavn = scanner.nextLine();\r\n        System.out.println(\"Skriv inn etternavn\");\r\n        String etternavn = scanner.nextLine();\r\n        System.out.println(\"Skriv inn telefonnummeret ditt\");\r\n        String tlfnr = scanner.nextLine();\r\n\r\n        System.out.println(\"Skriv inn gateaddressen din\");\r\n        String gateaddresse = scanner.nextLine();\r\n        System.out.println(\"Skriv inn postnummeret ditt\");\r\n        String postnr = scanner.nextLine();\r\n        System.out.println(\"Skriv inn poststedet ditt\");\r\n        String poststed = scanner.nextLine();\r\n\r\n        Adresse kunde1_adresse = new Adresse(gateaddresse, postnr, poststed);\r\n\r\n        kunde1 = new Kunde(fornavn, etternavn, kunde1_adresse, tlfnr);\r\n\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Main.java b/src/Main.java
+--- a/src/Main.java	(revision 50177acff96fc1d27599379b66e610c5dcb5569d)
++++ b/src/Main.java	(date 1707751597500)
+@@ -46,6 +46,12 @@
+ 
+         kunde1 = new Kunde(fornavn, etternavn, kunde1_adresse, tlfnr);
+ 
++        // Kunde vil ha en stor bil, og hente og levere i oslo
++
++
++
++
++
+     }
+ 
+ }
+\ No newline at end of file
+Index: src/BilUtleieSelskap.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import java.time.LocalDate;\r\nimport java.time.LocalDateTime;\r\nimport java.time.temporal.ChronoUnit;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\nimport java.util.Scanner;\r\nimport java.util.stream.Collectors;\r\n\r\npublic class BilUtleieSelskap {\r\n\r\n    private String navn;\r\n    private String phoneNumber;\r\n    private Adresse adresse;\r\n    private List<UtleieKontor> utleieKontor = new ArrayList<>();\r\n\r\n    public BilUtleieSelskap(String navn, String phoneNumber, Adresse address) {\r\n        this.navn = navn;\r\n        this.phoneNumber = phoneNumber;\r\n        this.adresse = address;\r\n    }\r\n\r\n    public void addUtleieKontor(UtleieKontor kontor) {\r\n        utleieKontor.add(kontor);\r\n    }\r\n\r\n    public void vilUtleieKontor() {\r\n        for (UtleieKontor kontor : utleieKontor) {\r\n            System.out.println(kontor.toString());\r\n        }\r\n    }\r\n\r\n    public List<Bil> finnLedigBil(LocalDateTime start, LocalDateTime slutt, String kategori) {\r\n        List<Bil> ledigeBiler = new ArrayList<>();\r\n        for (UtleieKontor kontor : utleieKontor) {\r\n            ledigeBiler.addAll(kontor.visLedigeBiler().stream()\r\n                    .filter(bil -> bil.getUtleieGruppe().getCode().equals(kategori) && bil.getStatus())\r\n                    .toList());\r\n        }\r\n        return ledigeBiler;\r\n    }\r\n\r\n    public Reservasjon leggTilReservasjon(Kunde kunde, LocalDateTime start, LocalDateTime slutt, UtleieGruppe kategori\r\n            , UtleieKontor utleieSted, UtleieKontor returSted) {\r\n        List<Bil> ledigeBiler = finnLedigBil(start, slutt, kategori.getCode());\r\n        if (!ledigeBiler.isEmpty()) {\r\n            Bil valgtBil = ledigeBiler.get(0);\r\n            int pris = beregnPris(start, slutt, kategori, utleieSted, returSted);\r\n            Reservasjon nyRes = new Reservasjon(utleieSted.getAdresse().getPoststed(), returSted.getAdresse().getPoststed(), start, slutt, kategori.getCode(), pris, valgtBil);\r\n            return nyRes;\r\n        } else {\r\n            System.out.println(\"ingen ledige biler funnet\");\r\n            return null;\r\n            // mjau test\r\n        }\r\n    }\r\n\r\n    public int beregnPris(LocalDateTime start, LocalDateTime slutt, UtleieGruppe kategori, UtleieKontor utleieSted, UtleieKontor returSted) {\r\n        int grunnPris = kategori.getGrunnPris();\r\n        long rentalDays = ChronoUnit.DAYS.between(start, slutt);\r\n        int totalPris = (int) rentalDays * grunnPris;\r\n\r\n        if (!utleieSted.equals(returSted)) {\r\n            int ekstraKostnad = 500;\r\n            totalPris += ekstraKostnad;\r\n        }\r\n        return totalPris;\r\n    }\r\n\r\n    public UtleieKontrakt opprettUtleieKontrakt(Reservasjon reservasjon, Kunde kunde, Bil bil, LocalDateTime henteDato, LocalDateTime returDato, int hentetKm, String kortnummer, LocalDate utlopsDato, Adresse adresse) {\r\n        if (!bil.getStatus() || !reservasjon.getBil().getRegnr().equals(bil.getRegnr())) {\r\n            System.out.println(\"Bilen er ikke tilgjengelig for utleie\");\r\n            return null;\r\n        }\r\n\r\n        BetalingsKort kort = new BetalingsKort(kunde.getKundeID(), kortnummer, utlopsDato, adresse);\r\n\r\n        UtleieKontrakt kontrakt = new UtleieKontrakt(reservasjon.getUtleieStart(),\r\n                reservasjon.getUtleieSlutt(),\r\n                bil.getAntallKmKjort(),\r\n                0,\r\n                reservasjon,\r\n                kort);\r\n\r\n        bil.setStatus(false);\r\n\r\n        return kontrakt;\r\n    }\r\n\r\n    public void returAvBil(UtleieKontrakt kontrakt, int kmKjort, LocalDateTime returDato) {\r\n        Bil bil = kontrakt.getReservasjon().getBil();\r\n\r\n        int totalKmKjort = kontrakt.getHentetKm() + kmKjort;\r\n        bil.setAntallKmKjort(totalKmKjort);\r\n    }\r\n\r\n    public boolean betalForLeien(Kunde kunde, UtleieKontrakt kontrakt) {\r\n        try {\r\n            String kortnummer = kontrakt.getKort().getKortnummer();\r\n            LocalDate utlopsdato = kontrakt.getKort().getUtlopsdato();\r\n            Adresse adresse1 = kontrakt.getKort().getFakturaAdresse();\r\n\r\n            Betaling betaling = new Betaling(kunde.getKundeID(), kortnummer, utlopsdato, adresse1);\r\n\r\n            System.out.println(\"Betalings beløp = \" + kontrakt.getReservasjon().getPris() + \" NOK \" + \" ble prosessert for kundeID: \" + kunde.getKundeID());\r\n            return true;\r\n        } catch (Exception e) {\r\n            System.err.println(\"Betalings prosesseringen feilet: \" + e.getMessage());\r\n            return false;\r\n        }\r\n    }\r\n\r\n    public String getNavn() {\r\n        return navn;\r\n    }\r\n\r\n    public void setNavn(String navn) {\r\n        this.navn = navn;\r\n    }\r\n\r\n    public String getPhoneNumber() {\r\n        return phoneNumber;\r\n    }\r\n\r\n    public void setPhoneNumber(String phoneNumber) {\r\n        this.phoneNumber = phoneNumber;\r\n    }\r\n\r\n    public Adresse getAddress() {\r\n        return adresse;\r\n    }\r\n\r\n    public void setAddress(Adresse address) {\r\n        this.adresse = address;\r\n    }\r\n\r\n    public List<UtleieKontor> getUtleieKontor() {\r\n        return utleieKontor;\r\n    }\r\n\r\n    public void setUtleieKontor(List<UtleieKontor> utleieKontor) {\r\n        this.utleieKontor = utleieKontor;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/BilUtleieSelskap.java b/src/BilUtleieSelskap.java
+--- a/src/BilUtleieSelskap.java	(revision 50177acff96fc1d27599379b66e610c5dcb5569d)
++++ b/src/BilUtleieSelskap.java	(date 1707751597505)
+@@ -23,7 +23,7 @@
+         utleieKontor.add(kontor);
+     }
+ 
+-    public void vilUtleieKontor() {
++    public void visUtleieKontor() {
+         for (UtleieKontor kontor : utleieKontor) {
+             System.out.println(kontor.toString());
+         }
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"aa0872e6-7614-4944-bbae-c21cd042ca09\" name=\"Changes\" comment=\"femte push pga main metoden mangler\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Enum\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\"><![CDATA[{\r\n  \"associatedIndex\": 7\r\n}]]></component>\r\n  <component name=\"ProjectId\" id=\"2cGaz8BvR1sIwNAmjlmlLVRvE2N\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"git-widget-placeholder\": \"main\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"jdk-18.0.2-corretto-18.0.2-f644763e9732-da6bd485\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"aa0872e6-7614-4944-bbae-c21cd042ca09\" name=\"Changes\" comment=\"\" />\r\n      <created>1707740630809</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1707740630809</updated>\r\n      <workItem from=\"1707740631921\" duration=\"6038000\" />\r\n    </task>\r\n    <task id=\"LOCAL−00001\" summary=\"andre push\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1707748849007</created>\r\n      <option name=\"number\" value=\"LOCAL−00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL−00001\" />\r\n      <updated>1707748849007</updated>\r\n    </task>\r\n    <task id=\"LOCAL−00002\" summary=\"andre push\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1707749764660</created>\r\n      <option name=\"number\" value=\"LOCAL−00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL−00002\" />\r\n      <updated>1707749764660</updated>\r\n    </task>\r\n    <task id=\"LOCAL−00003\" summary=\"fjerde push\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1707749846800</created>\r\n      <option name=\"number\" value=\"LOCAL−00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL−00003\" />\r\n      <updated>1707749846800</updated>\r\n    </task>\r\n    <task id=\"LOCAL−00004\" summary=\"femte push pga main metoden mangler\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1707749973631</created>\r\n      <option name=\"number\" value=\"LOCAL−00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL−00004\" />\r\n      <updated>1707749973631</updated>\r\n    </task>\r\n    <task id=\"LOCAL−00005\" summary=\"femte push pga main metoden mangler\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1707750211889</created>\r\n      <option name=\"number\" value=\"LOCAL−00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL−00005\" />\r\n      <updated>1707750211889</updated>\r\n    </task>\r\n    <task id=\"LOCAL−00006\" summary=\"femte push pga main metoden mangler\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1707750704872</created>\r\n      <option name=\"number\" value=\"LOCAL−00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL−00006\" />\r\n      <updated>1707750704872</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"7\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"andre push\" />\r\n    <MESSAGE value=\"fjerde push\" />\r\n    <MESSAGE value=\"femte push pga main metoden mangler\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"femte push pga main metoden mangler\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 50177acff96fc1d27599379b66e610c5dcb5569d)
++++ b/.idea/workspace.xml	(date 1707751601389)
+@@ -4,7 +4,11 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="aa0872e6-7614-4944-bbae-c21cd042ca09" name="Changes" comment="femte push pga main metoden mangler" />
++    <list default="true" id="aa0872e6-7614-4944-bbae-c21cd042ca09" name="Changes" comment="femte push pga main metoden mangler">
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/BilUtleieSelskap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BilUtleieSelskap.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
++    </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -21,29 +25,29 @@
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+-  <component name="ProjectColorInfo"><![CDATA[{
+-  "associatedIndex": 7
+-}]]></component>
++  <component name="ProjectColorInfo">{
++  &quot;associatedIndex&quot;: 7
++}</component>
+   <component name="ProjectId" id="2cGaz8BvR1sIwNAmjlmlLVRvE2N" />
+   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+   <component name="ProjectViewState">
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "git-widget-placeholder": "main",
+-    "kotlin-language-version-configured": "true",
+-    "node.js.detected.package.eslint": "true",
+-    "node.js.detected.package.tslint": "true",
+-    "node.js.selected.package.eslint": "(autodetect)",
+-    "node.js.selected.package.tslint": "(autodetect)",
+-    "nodejs_package_manager_path": "npm",
+-    "vue.rearranger.settings.migration": "true"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
++    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
++    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
++    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
++    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
++    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="SharedIndexes">
+     <attachedChunks>
+       <set>
