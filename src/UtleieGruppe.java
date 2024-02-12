@@ -1,3 +1,7 @@
+/**
+ * Enum som representerer de ulike gruppene av utleiebiler basert på størrelse og pris.
+ * Hver utleiegruppe er definert med en kode og en grunnpris for utleie.
+ */
 public enum UtleieGruppe {
     LITEN("A", 500),
     MELLOMSTOR("B", 750),

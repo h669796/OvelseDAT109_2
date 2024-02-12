@@ -1,3 +1,8 @@
+
+/**
+ * Representerer en kunde med informasjon som kundeID, fornavn, etternavn, adresse og telefonnummer.
+ * KundeID genereres automatisk og inkrementeres for hver ny instans av klassen.
+ */
 public class Kunde {
 
     private static int nesteID = 1;
@@ -6,6 +11,14 @@ public class Kunde {
     private String etternavn;
     private Adresse adresse;
     private String telefonnummer;
+
+    /**
+     * opretter en ny kunde
+     * @param fornavn
+     * @param etternavn
+     * @param adresse
+     * @param telefonnummer
+     */
 
     public Kunde(String fornavn, String etternavn, Adresse adresse, String telefonnummer) {
         this.kundeID = nesteID++;

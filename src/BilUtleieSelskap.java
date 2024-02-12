@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+/**
+ * Representerer et bilutleieselskap med informasjon om navn, telefonnummer, adresse og en liste av utleiekontorer.
+ */
 public class BilUtleieSelskap {
 
     private String navn;
@@ -13,6 +16,13 @@ public class BilUtleieSelskap {
     private Adresse adresse;
     private List<UtleieKontor> utleieKontor = new ArrayList<>();
 
+    /**
+     * Oppretter et nytt bilutleieselskap.
+     *
+     * @param navn Navnet på bilutleieselskapet
+     * @param phoneNumber Telefonnummeret til bilutleieselskapet
+     * @param address Adressen til hovedkontoret for bilutleieselskapet
+     */
     public BilUtleieSelskap(String navn, String phoneNumber, Adresse address) {
         this.navn = navn;
         this.phoneNumber = phoneNumber;
@@ -29,7 +39,15 @@ public class BilUtleieSelskap {
         }
     }
 
-    public List<Bil> finnLedigeBiler(LocalDateTime start, LocalDateTime slutt, String kategori) {
+    /**
+     * Finner ledige biler basert på angitt start- og sluttidspunkt og bilkategori.
+     *
+     * @param start Starttidspunktet for leieperioden
+     * @param slutt Sluttidspunktet for leieperioden
+     * @param kategori Kategorien av bil som ønskes leid
+     * @return En liste av ledige biler som matcher kriteriene
+     */
+    public List<Bil> finnLedigBil(LocalDateTime start, LocalDateTime slutt, String kategori) {
         List<Bil> ledigeBiler = new ArrayList<>();
         for (UtleieKontor kontor : utleieKontor) {
             ledigeBiler.addAll(kontor.visLedigeBiler().stream()
@@ -39,12 +57,21 @@ public class BilUtleieSelskap {
         return ledigeBiler;
     }
 
+    /**
+     *  legger til en reservasjon
+     * @param kunde
+     * @param start
+     * @param slutt
+     * @param kategori
+     * @param utleieSted
+     * @param returSted
+     * @return reservasonen
+     */
     public Reservasjon leggTilReservasjon(Kunde kunde, LocalDateTime start, LocalDateTime slutt, UtleieGruppe kategori
             , UtleieKontor utleieSted, UtleieKontor returSted) {
-        List<Bil> ledigeBiler = finnLedigeBiler(start, slutt, kategori.getCode());
+        List<Bil> ledigeBiler = finnLedigBil(start, slutt, kategori.getCode());
         if (!ledigeBiler.isEmpty()) {
             Bil valgtBil = ledigeBiler.get(0);
-            valgtBil.setStatus(false);
             int pris = beregnPris(start, slutt, kategori, utleieSted, returSted);
             Reservasjon nyRes = new Reservasjon(utleieSted.getAdresse().getPoststed(), returSted.getAdresse().getPoststed(), start, slutt, kategori.getCode(), pris, valgtBil);
             return nyRes;
@@ -54,6 +81,16 @@ public class BilUtleieSelskap {
             // mjau test
         }
     }
+
+    /**
+     * regner ut prisen på en bil
+     * @param start
+     * @param slutt
+     * @param kategori
+     * @param utleieSted
+     * @param returSted
+     * @return totalprisen på bilen
+     */
 
     public int beregnPris(LocalDateTime start, LocalDateTime slutt, UtleieGruppe kategori, UtleieKontor utleieSted, UtleieKontor returSted) {
         int grunnPris = kategori.getGrunnPris();
@@ -67,7 +104,21 @@ public class BilUtleieSelskap {
         return totalPris;
     }
 
-    public UtleieKontrakt opprettUtleieKontrakt(Reservasjon reservasjon, Kunde kunde, Bil bil, LocalDateTime henteDato, LocalDateTime returDato, int hentetKm, String kortnummer, String utlopsDato, Adresse adresse) {
+    /**
+     * oppretter en utleiekontrakt
+     *
+     * @param reservasjon
+     * @param kunde
+     * @param bil
+     * @param henteDato
+     * @param returDato
+     * @param hentetKm
+     * @param kortnummer
+     * @param utlopsDato
+     * @param adresse
+     * @return en utleiekontrakt
+     */
+    public UtleieKontrakt opprettUtleieKontrakt(Reservasjon reservasjon, Kunde kunde, Bil bil, LocalDateTime henteDato, LocalDateTime returDato, int hentetKm, String kortnummer, LocalDate utlopsDato, Adresse adresse) {
         if (!bil.getStatus() || !reservasjon.getBil().getRegnr().equals(bil.getRegnr())) {
             System.out.println("Bilen er ikke tilgjengelig for utleie");
             return null;
@@ -82,9 +133,17 @@ public class BilUtleieSelskap {
                 reservasjon,
                 kort);
 
+        bil.setStatus(false);
+
         return kontrakt;
     }
 
+    /**
+     * tar imot en retur av bil
+     * @param kontrakt
+     * @param kmKjort
+     * @param returDato
+     */
     public void returAvBil(UtleieKontrakt kontrakt, int kmKjort, LocalDateTime returDato) {
         Bil bil = kontrakt.getReservasjon().getBil();
 
@@ -92,10 +151,18 @@ public class BilUtleieSelskap {
         bil.setAntallKmKjort(totalKmKjort);
     }
 
+
+    /**
+     * betaler for leien
+     * @param kunde
+     * @param kontrakt
+     * @return true ller false, om det er betalt
+     */
+
     public boolean betalForLeien(Kunde kunde, UtleieKontrakt kontrakt) {
         try {
             String kortnummer = kontrakt.getKort().getKortnummer();
-            String utlopsdato = kontrakt.getKort().getUtlopsdato();
+            LocalDate utlopsdato = kontrakt.getKort().getUtlopsdato();
             Adresse adresse1 = kontrakt.getKort().getFakturaAdresse();
 
             Betaling betaling = new Betaling(kunde.getKundeID(), kortnummer, utlopsdato, adresse1);
