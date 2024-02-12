@@ -23,13 +23,28 @@ public class Main { //I love black people
         bergen.addBil(bil3);
         oslo.addBil(bil4);
 
-        Kunde kunde1;
+        Kunde kunde1; // gjør oss klar til å ta imot en ny kunde, enten online eller i butikken
+
         System.out.println("En kunde vil starte leieprosessen.");
+
         System.out.println("Skriv inn fornavn");
         Scanner scanner = new Scanner(System.in);
         String fornavn = scanner.nextLine();
         System.out.println("Skriv inn etternavn");
         String etternavn = scanner.nextLine();
+        System.out.println("Skriv inn telefonnummeret ditt");
+        String tlfnr = scanner.nextLine();
+
+        System.out.println("Skriv inn gateaddressen din");
+        String gateaddresse = scanner.nextLine();
+        System.out.println("Skriv inn postnummeret ditt");
+        String postnr = scanner.nextLine();
+        System.out.println("Skriv inn poststedet ditt");
+        String poststed = scanner.nextLine();
+
+        Adresse kunde1_adresse = new Adresse(gateaddresse, postnr, poststed);
+
+        kunde1 = new Kunde(fornavn, etternavn, kunde1_adresse, tlfnr);
 
     }
 
