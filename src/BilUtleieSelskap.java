@@ -124,6 +124,7 @@ public class BilUtleieSelskap {
             return null;
         }
 
+        System.out.println("Oppretter BetalingsKort med Kunde ID: " + kunde.getKundeID()); // Debugging-utskrift
         BetalingsKort kort = new BetalingsKort(kunde.getKundeID(), kortnummer, utlopsDato, adresse);
 
         UtleieKontrakt kontrakt = new UtleieKontrakt(reservasjon.getUtleieStart(),

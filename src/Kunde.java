@@ -26,10 +26,13 @@ public class Kunde {
         this.etternavn = etternavn;
         this.adresse = adresse;
         this.telefonnummer = telefonnummer;
+        System.out.println("Ny Kunde ID: " + this.kundeID); // Legger til en utskrift for debugging
     }
 
     public int getKundeID(){
-        return kundeID;
+            return kundeID;
+
+
     }
     public String getFornavn() {
         return fornavn;
