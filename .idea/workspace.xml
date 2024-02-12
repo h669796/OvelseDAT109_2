@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aa0872e6-7614-4944-bbae-c21cd042ca09" name="Changes" comment="fjerde push">
+    <list default="true" id="aa0872e6-7614-4944-bbae-c21cd042ca09" name="Changes" comment="femte push pga main metoden mangler">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +61,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1707740630809</updated>
-      <workItem from="1707740631921" duration="5057000" />
+      <workItem from="1707740631921" duration="5689000" />
     </task>
     <task id="LOCAL−00001" summary="andre push">
       <option name="closed" value="true" />
@@ -85,7 +84,21 @@
       <option name="presentableId" value="LOCAL−00003" />
       <updated>1707749846800</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL−00004" summary="femte push pga main metoden mangler">
+      <option name="closed" value="true" />
+      <created>1707749973631</created>
+      <option name="number" value="LOCAL−00004" />
+      <option name="presentableId" value="LOCAL−00004" />
+      <updated>1707749973631</updated>
+    </task>
+    <task id="LOCAL−00005" summary="femte push pga main metoden mangler">
+      <option name="closed" value="true" />
+      <created>1707750211889</created>
+      <option name="number" value="LOCAL−00005" />
+      <option name="presentableId" value="LOCAL−00005" />
+      <updated>1707750211889</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -94,6 +107,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="andre push" />
     <MESSAGE value="fjerde push" />
-    <option name="LAST_COMMIT_MESSAGE" value="fjerde push" />
+    <MESSAGE value="femte push pga main metoden mangler" />
+    <option name="LAST_COMMIT_MESSAGE" value="femte push pga main metoden mangler" />
   </component>
 </project>
