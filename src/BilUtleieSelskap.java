@@ -28,11 +28,11 @@ public class BilUtleieSelskap {
         }
     }
 
-    public List<Bil> finnLedigBil(LocalDateTime start, LocalDateTime slutt, UtleieGruppe kategori){
+    public List<Bil> finnLedigBil(LocalDateTime start, LocalDateTime slutt, String kategori){
         List<Bil> ledigeBiler = new ArrayList<>();
         for(UtleieKontor kontor : utleieKontor){
             ledigeBiler.addAll(kontor.visLedigeBiler().stream()
-                    .filter(bil -> bil.getUtleieGruppe == kategori && bil.getStatus())
+                    .filter(bil -> bil.getUtleieGruppe().getCode().equals(kategori) && bil.getStatus())
                     .toList());
         }
         return ledigeBiler;
@@ -44,9 +44,9 @@ public class BilUtleieSelskap {
         return null;
     }
 
-    public Reservasjon leggTilReservasjon(Kunde kunde, LocalDateTime start, LocalDateTime slutt, utleieGruppe kategori
+    public Reservasjon leggTilReservasjon(Kunde kunde, LocalDateTime start, LocalDateTime slutt, UtleieGruppe kategori
             , UtleieKontor utleieSted, UtleieKontor returSted){
-        List<Bil> ledigeBiler = finnLedigBil(start, slutt, kategori);
+        List<Bil> ledigeBiler = finnLedigBil(start, slutt, kategori.getCode());
         if(!ledigeBiler.isEmpty()){
             Bil valgtBil = ledigeBiler.get(0);
             int pris = beregnPris(start, slutt, kategori, utleieSted, returSted);
@@ -59,8 +59,8 @@ public class BilUtleieSelskap {
         }
     }
 
-    public int beregnPris(LocalDateTime start, LocalDateTime slutt, utleieGruppe kategori, UtleieKontor utleieSted, UtleieKontor returSted){
-        int grunnPris = kategori.
+    public int beregnPris(LocalDateTime start, LocalDateTime slutt, UtleieGruppe kategori, UtleieKontor utleieSted, UtleieKontor returSted){
+        int grunnPris = kategori.getGrunnPris();
         long rentalDays = ChronoUnit.DAYS.between(start, slutt);
         int totalPris = (int) rentalDays * grunnPris;
 

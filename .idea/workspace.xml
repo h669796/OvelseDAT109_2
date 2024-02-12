@@ -4,18 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aa0872e6-7614-4944-bbae-c21cd042ca09" name="Changes" comment="">
+    <list default="true" id="aa0872e6-7614-4944-bbae-c21cd042ca09" name="Changes" comment="andre push">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Adresse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Adresse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Betaling.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Betaling.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BetalingsKort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BetalingsKort.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Bil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BilUtleieSelskap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BilUtleieSelskap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Kunde.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Kunde.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Reservasjon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Reservasjon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UtleieGruppe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UtleieGruppe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UtleieKontor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UtleieKontor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UtleieKontrakt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UtleieKontrakt.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,11 +63,23 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1707740630809</updated>
-      <workItem from="1707740631921" duration="3939000" />
+      <workItem from="1707740631921" duration="4857000" />
     </task>
+    <task id="LOCAL−00001" summary="andre push">
+      <option name="closed" value="true" />
+      <created>1707748849007</created>
+      <option name="number" value="LOCAL−00001" />
+      <option name="presentableId" value="LOCAL−00001" />
+      <updated>1707748849007</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="andre push" />
+    <option name="LAST_COMMIT_MESSAGE" value="andre push" />
   </component>
 </project>
