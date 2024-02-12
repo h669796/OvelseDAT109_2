@@ -1,10 +1,25 @@
 import java.time.LocalDate;
 
+
+/**
+ *  * Representerer en betalingsinformasjon for en kunde inkludert kundeID, kortnummer, utløpsdato for kortet,
+ *  * og fakturaadresse.
+ *  */
+
 public class Betaling {
     private int kundeID;
     private String kortNummer;
     private LocalDate utlopsDato;
     private Adresse fakturaAdresse;
+
+    /**
+     * Oppretter en ny instans av Betaling.
+     *
+     * @param kundeID Kundeidentifikator
+     * @param kortNummer Nummeret på betalingskortet
+     * @param utlopsDato Utløpsdatoen for betalingskortet
+     * @param fakturaAdresse Fakturaadressen for betalingen
+     */
 
     public Betaling(int kundeID, String kortNummer, LocalDate utlopsDato, Adresse fakturaAdresse) {
         this.kundeID = kundeID;
