@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aa0872e6-7614-4944-bbae-c21cd042ca09" name="Changes" comment="andre push">
+    <list default="true" id="aa0872e6-7614-4944-bbae-c21cd042ca09" name="Changes" comment="fjerde push">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Bil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BilUtleieSelskap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BilUtleieSelskap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +62,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1707740630809</updated>
-      <workItem from="1707740631921" duration="4857000" />
+      <workItem from="1707740631921" duration="5057000" />
     </task>
     <task id="LOCAL−00001" summary="andre push">
       <option name="closed" value="true" />
@@ -72,7 +71,21 @@
       <option name="presentableId" value="LOCAL−00001" />
       <updated>1707748849007</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL−00002" summary="andre push">
+      <option name="closed" value="true" />
+      <created>1707749764660</created>
+      <option name="number" value="LOCAL−00002" />
+      <option name="presentableId" value="LOCAL−00002" />
+      <updated>1707749764660</updated>
+    </task>
+    <task id="LOCAL−00003" summary="fjerde push">
+      <option name="closed" value="true" />
+      <created>1707749846800</created>
+      <option name="number" value="LOCAL−00003" />
+      <option name="presentableId" value="LOCAL−00003" />
+      <updated>1707749846800</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -80,6 +93,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="andre push" />
-    <option name="LAST_COMMIT_MESSAGE" value="andre push" />
+    <MESSAGE value="fjerde push" />
+    <option name="LAST_COMMIT_MESSAGE" value="fjerde push" />
   </component>
 </project>
