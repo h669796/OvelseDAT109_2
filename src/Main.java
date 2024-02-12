@@ -1,7 +1,12 @@
 import java.util.Scanner;
 
-public class Main { //I love black people testest
-    //beger
+/**
+ * * Hovedklassen for simulering av leieprosessen i et bilutleieselskap.
+   * Denne klassen initialiserer bilutleieselskapet, legger til utleiekontorer og biler,
+   * og behandler kundeinndata for å starte leieprosessen.
+    *
+    */
+public class Main {
     public static void main(String[] args) {
 
         // Dette er klassen for leien foregår, simulert

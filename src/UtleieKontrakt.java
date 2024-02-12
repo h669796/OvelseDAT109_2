@@ -1,5 +1,8 @@
 import java.time.LocalDateTime;
 
+/**
+ * representerer en utleiekontrakt for bilutleie
+ */
 public class UtleieKontrakt {
 
     private static int teller = 0;
@@ -17,6 +20,15 @@ public class UtleieKontrakt {
     private BetalingsKort kort;
     private Reservasjon reservasjon;
 
+    /**
+     * opretter en ny utleiekontrakt
+     * @param henteDato
+     * @param returDato
+     * @param hentetKm
+     * @param returnertKm
+     * @param reservasjon
+     * @param kort
+     */
     public UtleieKontrakt(LocalDateTime henteDato, LocalDateTime returDato, int hentetKm, int returnertKm, Reservasjon reservasjon, BetalingsKort kort) {
         this.kontraktID = ++teller;
         this.henteDato = henteDato;
