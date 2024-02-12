@@ -1,3 +1,7 @@
+
+/**
+ * Representerer en bil med informasjon som registreringsnummer, merke, modell, farge, utleiegruppe, antall kilometer kjørt, og status for om den er ledig.
+ */
 public class Bil {
 
     private UtleieGruppe utleieGruppe;
@@ -7,6 +11,11 @@ public class Bil {
     private String farge;
     private int antallKmKjort;
     private Boolean status;
+
+/**
+ * Konstruerer en ny bil med spesifisert informasjon.
+ */
+
     public Bil(String regnr, String merke, String modell, String farge, UtleieGruppe utleiegruppe, int antallKmKjort) {
         this.regnr = regnr;
         this.merke = merke;
