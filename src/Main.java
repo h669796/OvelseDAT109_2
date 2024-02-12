@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
-public class Main { //I love black people
+public class Main { //I love black people testest
+    //beger
     public static void main(String[] args) {
 
         // Dette er klassen for leien foregår, simulert
