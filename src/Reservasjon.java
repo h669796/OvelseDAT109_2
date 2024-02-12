@@ -11,6 +11,7 @@ private LocalDateTime utleieSlutt;
 private String bilKategori;
 private int pris;
 private Bil bil;
+private Kunde kunde;
 
 public Reservasjon(String utleiested, String returSted, LocalDateTime utleieStart, LocalDateTime utleieSlutt, String bilKategori, int pris, Bil bil) {
     this.reservasjonsID = ++teller;
@@ -28,6 +29,9 @@ public Bil getBil(){
 }
 public int getReservasjonsID() {
     return reservasjonsID;
+}
+public Kunde getKunde(){
+    return kunde;
 }
 
 public void setReservasjonsID(int reservasjonsID) {

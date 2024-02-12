@@ -1,3 +1,9 @@
+import javax.swing.text.DateFormatter;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main { //I love black people testest
@@ -46,6 +52,37 @@ public class Main { //I love black people testest
         Adresse kunde1_adresse = new Adresse(gateaddresse, postnr, poststed);
 
         kunde1 = new Kunde(fornavn, etternavn, kunde1_adresse, tlfnr);
+
+        //kunde1 vil leie en stor bil, hente og levere i oslo med en dags mellomrom
+        //Vi skal nå finne de ledige bilene som matcher dette
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        LocalDateTime start = LocalDateTime.parse("2024-02-12 15:00:00", formatter);
+        LocalDateTime slutt = LocalDateTime.parse("2024-02-13 16:00:00", formatter);
+
+        List<Bil> kandidater = selskap.finnLedigeBiler(start, slutt, "C");
+
+        //Kunden skal nå gjennomføre reservasjonen
+
+        Reservasjon kunde1res = selskap.leggTilReservasjon(kunde1, start, slutt, UtleieGruppe.STOR, oslo, oslo);
+
+        //Utleiekontrakt må nå opprettes mellom utleier og leier, og vi trenger kortet til kunden til fremtidig faktura
+
+        System.out.println("Skriv inn kortnummeret ditt for å initiere kontrakten");
+        String kortnr = scanner.nextLine();
+        System.out.println("Skriv inn utlopsdatoen til kortet");
+        String utlopsdato = "2026:05:10";
+
+        UtleieKontrakt kunde1kontrakt = selskap.opprettUtleieKontrakt(kunde1res, kunde1res.getKunde(), kunde1res.getBil(), start, slutt, kunde1res.getBil().getAntallKmKjort(), kortnr, utlopsdato, kunde1_adresse);
+
+        //Kunden har brukt bilen i et døgn, og vil nå levere den tilbake
+
+        selskap.returAvBil(kunde1kontrakt, 50, slutt);
+
+        //Kunden må nå betale for leien
+
+        selskap.betalForLeien(kunde1, kunde1kontrakt);
 
     }
 
